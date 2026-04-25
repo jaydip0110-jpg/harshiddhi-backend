@@ -131,19 +131,19 @@ const importData = async () => {
     await User.deleteMany();
 
     // Create admin user
-   const adminUser = await User.create({
+const adminUser = await User.create({
   name:     'Admin Harshiddhi',
   email:    'admin@harshiddhi.com',
-  password: 'admin123',
+  password: 'Admin@123',
   role:     'admin',
 });
 
     // Create test user
-    await User.create({
-      name:     'Test User',
-      email:    'user@harshiddhi.com',
-      password: 'user123',
-    });
+  await User.create({
+  name:     'Test User',
+  email:    'user@harshiddhi.com',
+  password: 'User@123',
+});
 
     await Product.insertMany(sampleProducts);
 

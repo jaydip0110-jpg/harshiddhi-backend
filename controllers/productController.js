@@ -50,13 +50,24 @@ const getProductById = asyncHandler(async (req, res) => {
 // @route POST /api/products
 // @access Admin
 const createProduct = asyncHandler(async (req, res) => {
-  const { name, description, price, category, fabric, color, stock, featured, discount, images } = req.body;
+  const {
+    name, description, price, category, fabric,
+    color, stock, featured, discount, images,
+    sizes, homeCategory,
+  } = req.body;
+
   const product = await Product.create({
-    name, description, price, category, fabric, color, stock,
-    featured: featured || false,
-    discount:  discount || 0,
-    images:    images   || [],
+    name, description, price, category,
+    fabric:       fabric       || '',
+    color:        color        || '',
+    stock,
+    featured:     featured     || false,
+    discount:     discount     || 0,
+    images:       images       || [],
+    sizes:        sizes        || [],
+    homeCategory: homeCategory || 'None',
   });
+
   res.status(201).json(product);
 });
 

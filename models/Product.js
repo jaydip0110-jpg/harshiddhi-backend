@@ -24,6 +24,14 @@ const productSchema = new mongoose.Schema({
     type: String,
     enum: ['Free Size', 'XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', '4XL', '5XL'],
   }],
+
+  // Home page category section
+homeCategory: {
+  type:    String,
+  enum:    ['None', 'Sarees', 'Dresses', 'Lehenga', 'Suits', 'Kurtis', 'Dupattas'],
+  default: 'None',
+},
+
   stock:       { type: Number, required: true, default: 0 },
   rating:      { type: Number, default: 0 },
   numReviews:  { type: Number, default: 0 },

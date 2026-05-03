@@ -143,10 +143,55 @@ const getAllUsers = asyncHandler(async (req, res) => {
   res.json(users);
 });
 
+// @desc  Google Login
+// @route POST /api/users/google-login
+const googleLogin = asyncHandler(async (req, res) => {
+  const { name, email, googleId, avatar } = req.body;
+
+  if (!email) {
+    res.status(400);
+    throw new Error('Email required');
+  }
+
+  // User exist check — email થી
+  let user = await User.findOne({ email: email.toLowerCase() });
+
+  if (user) {
+    // Already exists — login
+    res.json({
+      _id:    user._id,
+      name:   user.name,
+      email:  user.email,
+      role:   user.role,
+      avatar: user.avatar || avatar,
+      token:  generateToken(user._id),
+    });
+  } else {
+    // New user — create
+    user = await User.create({
+      name,
+      email:    email.toLowerCase(),
+      password: googleId + process.env.JWT_SECRET, // Random secure password
+      avatar,
+      googleId,
+    });
+
+    res.status(201).json({
+      _id:    user._id,
+      name:   user.name,
+      email:  user.email,
+      role:   user.role,
+      avatar: user.avatar,
+      token:  generateToken(user._id),
+    });
+  }
+});
+
 module.exports = {
   registerUser,
   loginUser,
   getUserProfile,
   updateUserProfile,
   getAllUsers,
+  googleLogin,
 };

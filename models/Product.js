@@ -31,7 +31,7 @@ homeCategory: {
   enum:    ['None', 'Sarees', 'Dresses', 'Lehenga', 'Suits', 'Kurtis', 'Dupattas'],
   default: 'None',
 },
-
+  showOnHome: { type: Boolean, default: false },
   stock:       { type: Number, required: true, default: 0 },
   rating:      { type: Number, default: 0 },
   numReviews:  { type: Number, default: 0 },

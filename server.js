@@ -26,6 +26,7 @@ app.use('/api/users',    require('./routes/userRoutes'));
 app.use('/api/orders',   require('./routes/orderRoutes'));
 app.use('/api/upload',   require('./routes/uploadRoutes'));
 app.use('/api/payment', require('./routes/paymentRoutes'));
+app.use('/api/otp', require('./routes/otpRoutes'));
 
 app.get('/', (req, res) => {
   res.json({ message: '🌸 Harshiddhi API is running' });
